@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "serbian-sentiment-wsd-toolkit"
-version = "0.1.0"
+version = "0.1.1"
 description = "Explainable Serbian WordNet sentiment analysis with word-sense disambiguation."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -24,7 +24,7 @@ full = [
     "transformers>=4.49,<4.50",
     "safetensors>=0.4",
 ]
-dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.11", "build>=1.2", "openpyxl>=3.1,<4"]
+dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.11", "build>=1.2", "openpyxl>=3.1,<4", "tomli>=2; python_version < '3.11'"]
 
 [project.scripts]
 sr-sentiment = "serbian_sentiment.cli:main"
