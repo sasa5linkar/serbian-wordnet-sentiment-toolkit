@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite this release."
+title: "Serbian WordNet Sentiment Toolkit"
+type: software
+version: 0.1.0
+date-released: 2026-09-25
+authors:
+  - family-names: "Petalinkar"
+    given-names: "Saša Z."
+license: Apache-2.0
+repository-code: "https://github.com/sasa5linkar/serbian-wordnet-sentiment-toolkit"
+url: "https://github.com/sasa5linkar/serbian-wordnet-sentiment-toolkit"

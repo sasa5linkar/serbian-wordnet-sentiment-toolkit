@@ -1,0 +1,7 @@
+Serbian Sentiment WSD Toolkit
+Copyright 2026 Saša Z. Petalinkar
+
+Source code is licensed under Apache License 2.0 (LICENSE).
+Original documentation and examples are licensed under Creative Commons Attribution 4.0 International (LICENSE-DOCS).
+
+Third-party WordNet data, ELEXIS resources, sentiment lexicons, and model weights retain their original licenses and are not relicensed. Resources with unverified redistribution rights are not included.
