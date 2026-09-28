@@ -46,3 +46,7 @@ The adapter reads `text_prefix` from `training_config.json`; `--text-prefix` exp
 For model-specific SentenceTransformer examples and the pinned revisions of MiniLM and TeslaXLM, see the [WSD model guide](https://github.com/sasa5linkar/serbian-wsd-distillation/blob/main/docs/huggingface_models.md) and their model cards. The published loading checks are separate from a full replication of the dissertation results.
 
 The existing [Tanor preprocessing model](https://huggingface.co/Tanor/sr_pln_tesla_dbmu), ELEXIS inventory, and sentiment lexicons remain separate resources. Obtain them before running the full pipeline and retain their original licenses. The lightweight overlap example requires none of these downloads.
+
+## Optional model selector
+
+Use [examples/load_hf_wsd.py](../examples/load_hf_wsd.py) to choose `mling`, `simple`, or `tesla`, download it explicitly, or run a small standalone SentenceTransformer ranking example. [Commands and recommendations](../README.md#optional-hugging-face-example) keep this optional environment separate from the toolkit installation. The default E5 download directory matches the full pipeline layout above.

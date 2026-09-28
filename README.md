@@ -73,6 +73,42 @@ The default symmetric decision threshold is `0.01`. It is the operational
 value calibrated for the thesis configuration A7/S7 with WSD; use
 `--threshold` to override it for another lexicon, domain, or scoring method.
 
+## Optional Hugging Face example
+
+[examples/load_hf_wsd.py](examples/load_hf_wsd.py) offers all three published rankers:
+
+| Option | Model | When to choose it |
+|---|---|---|
+| `mling` (default) | [E5 Large](https://huggingface.co/Tanor/serbian-wsd-distilled-e5-large) | Starting choice: highest reported strict WSD accuracy of these three (72.6%). |
+| `simple` | [MiniLM](https://huggingface.co/Tanor/serbian-wsd-distilled-minilm) | Smaller download: about 91 MB of weights; reported strict accuracy 68.5%. |
+| `tesla` | [TeslaXLM](https://huggingface.co/Tanor/serbian-wsd-distilled-teslaxlm) | Comparison model; reported strict accuracy 51.3%, without improvement after distillation. |
+
+These are the dissertation's reported results, not scores from this example. E5 and TeslaXLM each have about 2.24 GB of weights. The default only selects a model; it does not authorize a download.
+
+List choices without installing model libraries:
+
+~~~bash
+python examples/load_hf_wsd.py --list
+~~~
+
+Run the small ranking example in a separate optional environment. This first call explicitly downloads MiniLM; replace `simple` with `mling` or `tesla` to choose another model:
+
+~~~bash
+uv run --no-project --with "sentence-transformers==5.5.0" --with "transformers==5.8.1" python examples/load_hf_wsd.py --model simple --download
+~~~
+
+Subsequent calls can omit `--download` to use the pinned cached copy. Use `--local-dir PATH` to read a complete existing checkpoint, or combine it with `--download` to download into that directory. Package installation by `uv` is separate from model download; `--no-project` keeps these example dependencies separate from the project's environment.
+
+The example loads only local files after the explicit download, reads the saved `text_prefix` (including E5's `query: `), and lets SentenceTransformers load the saved pooling and tokenizer settings. It ranks two illustrative Serbian definitions and prints sense IDs with cosine scores. The sample is a usage demonstration, not an accuracy test or a full sentiment pipeline. A supplied local directory is used as-is; the pinned revision applies to Hub downloads and cached snapshots.
+
+To obtain only the checkpoint for the existing application, without running the example:
+
+~~~bash
+uv run --no-project --with huggingface_hub python examples/load_hf_wsd.py --model mling --download --download-only --local-dir .local-resources/wsd/wsd-distilled-mling
+~~~
+
+The E5 directory above matches the toolkit's default resource layout. Use it with the existing `--backend distilled` option after obtaining the sense inventory and sentiment lexicon. The standalone example uses SentenceTransformers; it does not change the toolkit's optional dependency versions or its local adapter.
+
 ## Python API
 
 ~~~python
